@@ -11,7 +11,7 @@ import (
 func main() {
 	// Default port
 	port := "8080"
-	// Try to get the post from .net core
+	// Try to get the port from .net core
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		port = os.Getenv("ASPNETCORE_PORT")
 	}
