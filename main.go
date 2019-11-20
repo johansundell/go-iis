@@ -9,23 +9,24 @@ import (
 )
 
 func main() {
+	// Default port
 	port := "8080"
+	// Try to get the post from .net core
 	if os.Getenv("ASPNETCORE_PORT") != "" {
 		port = os.Getenv("ASPNETCORE_PORT")
 	}
 
 	srv := &http.Server{
-		//Handler: MainHandler,
 		Addr: ":" + port,
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	http.HandleFunc("/", MainHandler)
+	http.HandleFunc("/", mainHandler)
 
 	log.Println(srv.ListenAndServe())
 }
 
-func MainHandler(w http.ResponseWriter, r *http.Request) {
+func mainHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello World! :)")
 }
